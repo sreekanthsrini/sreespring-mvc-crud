@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sreesofttech</title>
+</head>
+<body>
+    <h2>WELCOME TO SREESOFTTECH</h2>
+    <hr>
+    <p>.    
+    YOUR DATAS ARE SAFE !!!! i am update vamakam
+   </p>
+   <hr>
+   <div sec:authorize="hasRole('MANAGER')">
+   <!-- Add link to point to /leader..this is for the -->
+   <p>
+    <a th:href="@{/leaders}">Leadership Meeting</a>
+    (only for Manager peeps)
+   </p>
+   <!-- THIS DIV TAG IS AUTHORIZE IT IS ONLY DISPLAY FOR REQUIRED LOGIN -->
+</div >
+   <hr>
+   <!-- ADD LINK TO ADMIN LOGIN -->
+   <!-- <p>
+    <a href="@{/systems}">SYSTEM ADMINISTATOR MEETING</a>
+    (only for admin)
+   </p> -->
+
+   <div sec:authorize="hasRole('ADMIN')">
+
+ 
+   <p>
+    <a th:href="@{/systems}">ADMIN MEETING</a>
+    (only for ADMIN peeps)
+
+   </p>
+</div>
+<hr>
+<div sec:authorize="hasRole('EMPLOYEE')">
+    <p>
+        <a th:href="@{empl}">only for employe</a>
+        (employee uses)
+    </p>
+</div>
+   <hr>
+
+
+   <!-- owner -->
+   <div sec:authorize="hasRole('CHAIRMAN')">
+
+ 
+    <p>
+     <a th:href="@{/char}">CHAIRMAN MEETING</a>
+     (only for CHAIRMAN peeps)
+ 
+    </p>
+ </div>
+   
+   <!-- display user name and roles -->
+   <p class="use">
+    User: <span sec:authentication="principal.username"></span>
+    <br><br>
+    Roles: <span sec:authentication="principal.authorities"></span>
+   </p>
+
+
+
+
+
+   <hr>
+
+
+
+
+   <!-- add logout button -->
+   <form action="#" th:action="@{/logout}" method="post">
+       <input type="submit" value="logout"/>
+
+   </form>
+   <style>
+    .use{
+        font-size: larger;
+        font-style: italic;
+
+    }
+    .uss:hover{
+        cursor: pointer;
+        
+    }
+
+   </style>
+
+    
+</body>
+</html>
